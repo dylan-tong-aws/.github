@@ -1,40 +1,65 @@
 ---
-name: 💭 Proposal
-about: Suggest an idea for a specific feature you wish to propose to the community for comment
-title: '[PROPOSAL]'
-labels: proposal
+name: 💭 ML Workload Extensibility
+about: a connector framework for accelerating ML workload integrations
+title: '[ML Workload Extensibility]'
+labels: ML Workload Extensibility
 assignees: ''
 ---
 ## What/Why
 ### What are you proposing?
-_In a few sentences, describe the feature and its core capabilities._
+
+This is a proposal for a connector framework that will enables contributors to integrate external systems to serve ML workloads. This framework will introduce integrators to a new integration pardigm that will require much less effort than building and maintaining custom plugins. The first phase of this framework will be designed to enable integrations with ML model serving technologies like Amazon SageMaker hosting services, NVIDIA Triton, Tensorflow Serving and Torch Serve.
 
 ### What users have asked for this feature?
-_Highlight any research, proposals, requests or anecdotes that signal this is the right thing to build. Include links to GitHub Issues, Forums, Stack Overflow, Twitter, Etc_
+
+Users have provided feedback in our Github proposal (https://github.com/opensearch-project/ml-commons/issues/302) for Deep Learning support.  We have received requests from users for an integration with Amazon SageMaker hosting. A large retailer has also provided us feedback that it is hard to integrate SageMaker models with OpenSearch.
+
+Many data platforms like Amazon Aurora, Amazon Athena, Databricks, Amazon Redshift, Snowflake, Exasol and Teradata support integrations with models hosted on ML platform providers. OpenSearch’s user base also overlaps with users of various ML server technology providers, so we have an opportunity to help our users get more value from their ML technology investments.
 
 ### What problems are you trying to solve?
-_Summarize the core use cases and user problems and needs you are trying to solve. Describe the most important user needs, pain points and jobs as expressed by the user asks above. Template: When \<a situation arises> , a \<type of user> wants to \<do something>, so they can \<expected outcome>. (Example: When **searching by postal code**, **a buyer** wants to **be required to enter a valid code** so they **don’t waste time searching for a clearly invalid postal code.**)_
+
+1. *Innovation velocity:* there are so many mature and rapidly evolving model serving technologies. We want to let users select the best technology available to them and benefit from ML capabilities that aren’t natively available on OpenSearch.
+2. *Ease of adoption:* many users have already adopted or built their own ML platform. We want to let those users leverage their existing investments and approved technologies.
+3. *Limited extensibility:* we do not have an easy way for partners and community contributors to integrate ML technology with OpenSearch. As an open and community-driven platform, it’s important for us to empower contributors to co-innovate and drive joint-GTM motions.
 
 ### What is the developer experience going to be?
-_Does this have a REST API? If so, please describe the API and any impact it may have to existing APIs. In a brief summary (not a spec), highlight what new REST APIs or changes to REST APIs are planned. as well as any other API, CLI or Configuration changes that are planned as part of this feature._
+
+Stay tune.
 
 #### Are there any security considerations? 
 _Describe if the feature has any security considerations or impact. What is the security model of the new APIs? Features should be integrated into the OpenSearch security suite and so if they are not, we should highlight the reasons here._
 
+The framework will be built around our existing APIs in ml-commons and it won't change the existing security models. A connector will manage communication between OpenSearch and an external system's APIs, and it will enforce certain security standards such the API authentication method.
+
+We will provide more details as we near launch and design it around feedback from potential integrators.
+
 #### Are there any breaking changes to the API
-_If this feature will require breaking changes to any APIs, ouline what those are and why they are needed. What is the path to minimizing impact? (example, add new API and deprecate the old one)_
+
+No
 
 ### What is the user experience going to be?
-_Describe the feature requirements and or user stories. You may include low-fidelity sketches, wireframes, APIs stubs, or other examples of how a user would use the feature via CLI, OpenSearch Dashboards, REST API, etc. Using a bulleted list or simple diagrams to outline features is okay. If this is net new functionality, call this out as well._
+
+Initially, this framework will enable integrations with model serving technologies and serve as an alternative to the ML Node for inference workloads. It doesn't change the UX of the features that are powered by OpenSearch's model serving capabilities. For instance, in 2.4, we are releasing support for semantic search which requires ML inference support. The semantic search interfaces will be the same regardless of where the inference workload runs.
 
 #### Are there breaking changes to the User Experience?
-_Will this change the existing user experience? Will this be a breaking change from a user flow or user experience perspective?_
+
+No
 
 ### Why should it be built? Any reason not to?
-_Describe the value that this feature will bring to the OpenSearch community, as well as what impact it has if it isn't built, or new risks if it is. Highlight opportunities for additional research._
+
+We are building this to solve challenges around:
+
+1. *Innovation velocity:* there are so many mature and rapidly evolving model serving technologies. We want to let users select the best technology available to them and benefit from ML capabilities that aren’t natively available on OpenSearch.
+2. *Ease of adoption:* many users have already adopted or built their own ML platform. We want to let those users leverage their existing investments and approved technologies.
+3. *Limited extensibility:* we do not have an easy way for partners and community contributors to integrate ML technology with OpenSearch. As an open and community-driven platform, it’s important for us to empower contributors to co-innovate and enable joint-GTM motions.
+
+We shouldn’t build this if we feel like we need full control over ML workloads, which doesn't align to our charter as an open and community driven search and analytics suite.
+
 
 ### What will it take to execute?
-_Describe what it will take to build this feature. Are there any assumptions you may be making that could limit scope or add limitations? Are there performance, cost, or technical constraints that may impact the user experience? Does this feature depend on other feature work? What additional risks are there?_
+
+Stay tune.
 
 ### Any remaining open questions?
-_What are known enhancements to this feature? Any enhancements that may be out of scope but that we will want to track long term? List any other open questions that may need to be answered before proceeding with an implementation._
+
+1. What's your favorite model serving technology? Would it be valuable to provide a distribution that packages the software with an OpenSearch distribution to simplify deployments?
