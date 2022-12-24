@@ -7,34 +7,63 @@ assignees: ''
 ---
 ## What/Why
 ### What are you proposing?
-_In a few sentences, describe the feature and its core capabilities._
 
-### What users have asked for this feature?
-_Highlight any research, proposals, requests or anecdotes that signal this is the right thing to build. Include links to GitHub Issues, Forums, Stack Overflow, Twitter, Etc_
+This feature will provide an OpenSearch admins visibility into where ML models are running in an OpenSearch cluster and whether or not they are responsive.
 
 ### What problems are you trying to solve?
-_Summarize the core use cases and user problems and needs you are trying to solve. Describe the most important user needs, pain points and jobs as expressed by the user asks above. Template: When \<a situation arises> , a \<type of user> wants to \<do something>, so they can \<expected outcome>. (Example: When **searching by postal code**, **a buyer** wants to **be required to enter a valid code** so they **don’t waste time searching for a clearly invalid postal code.**)_
+
+We're releasing this feature as part of our plan to bring the semantic search features we released in 2.4 from experimental to GA.
+
+Admins are responsible for the stability and performance of the OpenSearch cluster. If semantic search queries are resulting in errors or are degraded in performance, one reason could be because some or all of the supporting ML models aren’t responding to queries. This feature aims to help admins manage semantic search and ML workloads on OpenSearch by providing them visibility into the health of deployed models.
 
 ### What is the developer experience going to be?
-_Does this have a REST API? If so, please describe the API and any impact it may have to existing APIs. In a brief summary (not a spec), highlight what new REST APIs or changes to REST APIs are planned. as well as any other API, CLI or Configuration changes that are planned as part of this feature._
+
+This feature provides an UI for the [Profile](https://opensearch.org/docs/latest/ml-commons-plugin/api/#profile) API. Developers have the option of creating an alternative UI by building on top of this API.
 
 #### Are there any security considerations? 
-_Describe if the feature has any security considerations or impact. What is the security model of the new APIs? Features should be integrated into the OpenSearch security suite and so if they are not, we should highlight the reasons here._
+
+The UI will front an enhanced version of the current [Profile](https://opensearch.org/docs/latest/ml-commons-plugin/api/#profile) API. Thus, the user will require permissions to invoke the Profile API in order to use this dashboard. 
+
+We are also working on adding model-level access controls, which will provide another layer of permissions to control what models a user can view.
 
 #### Are there any breaking changes to the API
-_If this feature will require breaking changes to any APIs, ouline what those are and why they are needed. What is the path to minimizing impact? (example, add new API and deprecate the old one)_
+
+We are going to enhance the Profile API as part of this feature. Currently, the Profile API only provides visibility into the models that are responding. It does not provide visibility into where the unresponsive models are running. We plan to add this information in the API’s response.
+
+We don't plan to deprecate the Profile API since it is currently under experimental.
 
 ### What is the user experience going to be?
-_Describe the feature requirements and or user stories. You may include low-fidelity sketches, wireframes, APIs stubs, or other examples of how a user would use the feature via CLI, OpenSearch Dashboards, REST API, etc. Using a bulleted list or simple diagrams to outline features is okay. If this is net new functionality, call this out as well._
+
+This is a mock-up of the UI will provide:
+
+![mock-up](https://github.com/dylan-tong-aws/opensearch-issues-content/blob/main/Model%20Health%20Dashboard%20for%20ML%20Commons.png)
+
 
 #### Are there breaking changes to the User Experience?
-_Will this change the existing user experience? Will this be a breaking change from a user flow or user experience perspective?_
 
-### Why should it be built? Any reason not to?
-_Describe the value that this feature will bring to the OpenSearch community, as well as what impact it has if it isn't built, or new risks if it is. Highlight opportunities for additional research._
+No
 
 ### What will it take to execute?
 _Describe what it will take to build this feature. Are there any assumptions you may be making that could limit scope or add limitations? Are there performance, cost, or technical constraints that may impact the user experience? Does this feature depend on other feature work? What additional risks are there?_
 
+Are there any assumptions you may be making that could limit scope or add limitations?
+
+No
+
+Are there performance, cost, or technical constraints that may impact the user experience?
+
+No
+
+Does this feature depend on other feature work? 
+
+This feature is part of the ml-commons plug-in. You will need to install the plugin. You will also need to provision ML Nodes and deploy one or more models, or there will be nothing to display in the dashboard. Lastly, you will need permissions to run the underlying Profile API in order to see the dashboard.
+
+What additional risks are there?
+
+None
+
+
 ### Any remaining open questions?
-_What are known enhancements to this feature? Any enhancements that may be out of scope but that we will want to track long term? List any other open questions that may need to be answered before proceeding with an implementation._
+
+We're looking foward to community feedback!
+
